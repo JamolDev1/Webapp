@@ -6,7 +6,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "invoice.app.identity";
-    
     options.Cookie.Expiration = TimeSpan.FromDays(15);
 });
 
