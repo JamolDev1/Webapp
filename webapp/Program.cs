@@ -5,12 +5,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.Cookie.Name = "register.cookie";
-    options.LoginPath = "/account/signin";
-    options.LogoutPath = "/account/signout";
-
-    // options.Cookie.Expiration = TimeSpan.FromSeconds(10);
-    options.Cookie.MaxAge = TimeSpan.FromDays(15);
+    options.Cookie.Name = "invoice.app.identity";
+    
+    options.Cookie.Expiration = TimeSpan.FromDays(15);
 });
 
 
