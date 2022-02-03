@@ -3,6 +3,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "invoice.app.identity";
+    options.Cookie.Expiration = TimeSpan.FromDays(15);
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,6 +25,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
