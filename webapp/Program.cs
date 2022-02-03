@@ -3,6 +3,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "register.cookie";
+    options.LoginPath = "/account/signin";
+    options.LogoutPath = "/account/signout";
+
+    // options.Cookie.Expiration = TimeSpan.FromSeconds(10);
+    options.Cookie.MaxAge = TimeSpan.FromDays(15);
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -18,6 +29,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
