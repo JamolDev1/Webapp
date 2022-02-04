@@ -11,13 +11,13 @@ public class AppDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
+        
         builder.Entity<AppUser>(au => 
         {
             au.HasMany(u => u.Organizations)
                 .WithOne(i => i.Owner)
                 .HasForeignKey(i => i.OwnerId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         });
     }
 }
