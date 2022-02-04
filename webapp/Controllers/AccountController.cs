@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using webapp.ViewModel;
 
-namespace webapp;
+namespace webapp.Controllers;
 
 public class AccountController : Controller
 {

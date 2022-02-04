@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace webapp;
+namespace webapp.ViewModel;
 
 public class LoginViewModel 
 {

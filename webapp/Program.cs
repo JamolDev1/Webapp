@@ -1,4 +1,4 @@
-using invoice.Data;
+using webapp.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
