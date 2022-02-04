@@ -1,8 +1,7 @@
-using invoice.Data;
-using invoice.Entity;
-using Microsoft.AspNetCore.Identity;
+using webapp.Data;
 using Microsoft.EntityFrameworkCore;
-using webapp;
+using webapp.Entity;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 

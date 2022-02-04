@@ -1,9 +1,10 @@
-using invoice.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using webapp.Entity;
+using webapp.ViewModel;
 
-namespace webapp;
+namespace webapp.Controllers;
 
 public class AccountController : Controller
 {
