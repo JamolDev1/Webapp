@@ -3,15 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace webapp;
 
-public class RegisterViewModel : IValidatableObject
+public class RegisterViewModel
 {
     [Required(ErrorMessage = "To'liq ism-sharfini kiritish shart!")]
     [Display(Name = "Ism-sharf")]
     public string Fullname { get; set; }
-
-    [Required(ErrorMessage = "Tug'ilgan kunni kiritish shart!")]
-    [DisplayName("Tugilgan kun")]
-    public DateTimeOffset Birthdate { get; set; }
 
     [Required(ErrorMessage = "Telefon raqamni kiritish shart!")]
     [RegularExpression(
@@ -37,14 +33,4 @@ public class RegisterViewModel : IValidatableObject
 
     public string ReturnUrl { get; set; }
 
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        var now = DateTimeOffset.Now;
-        var limit = new DateTime(now.Year - 18, now.Month, now.Day);
-        Console.WriteLine($"{limit} {Birthdate}");
-        if(Birthdate > limit)
-        {
-            yield return new ValidationResult($"You must be at least 13 years old!", new [] { nameof(Birthdate)});
-        }
-    }
 }
