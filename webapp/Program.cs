@@ -1,5 +1,7 @@
 using webapp.Data;
 using Microsoft.EntityFrameworkCore;
+using webapp.Entity;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,14 +11,29 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             
 });
 
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 4;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireLowercase = false;
+
+    options.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<AppDbContext>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "invoice.app.identity";
+    options.LoginPath = "/account/login";
+    options.LogoutPath = "/account/logout";
     options.Cookie.Expiration = TimeSpan.FromDays(15);
 });
+
+builder.Services.AddControllersWithViews();
 
 
 var app = builder.Build();
