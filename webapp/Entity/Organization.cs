@@ -9,7 +9,6 @@ public class Organization
    public Guid Id { get; set; }   
 
    [Required]
-
    [Column(TypeName = "nvarchar(50)")] 
    public string Name { get; set; }  
 
@@ -24,7 +23,7 @@ public class Organization
    [Required]
    [Column(TypeName = "nvarchar(128)")] 
    public string Email { get; set; } 
-     
+
    public Guid OwnerId { get; set; }   
    public virtual AppUser Owner { get; set; }   
 }
