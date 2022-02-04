@@ -29,13 +29,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "invoice.app.identity";
-    options.LoginPath = "/account/signin";
-    options.LogoutPath = "/account/signout";
+    options.LoginPath = "/account/login";
+    options.LogoutPath = "/account/register";
     options.Cookie.Expiration = TimeSpan.FromDays(15);
 });
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddHostedService<Seed>();
+
 
 var app = builder.Build();
 

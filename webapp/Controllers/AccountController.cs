@@ -34,13 +34,13 @@ public class AccountController : Controller
 
         if(await _userManager.Users.AnyAsync(u => u.Email == model.Email))
         {
-            ModelState.AddModelError("Email", "Email already exists.");
+            ModelState.AddModelError("Email", "Email oldin kiritilgan.");
             return View(model);
         }
 
         if(await _userManager.Users.AnyAsync(u => u.PhoneNumber == model.Phone))
         {
-            ModelState.AddModelError("Phone", "Phone already exists.");
+            ModelState.AddModelError("Telefon", "Telefon raqam oldin kiritilgan.");
             return View(model);
         }
 
