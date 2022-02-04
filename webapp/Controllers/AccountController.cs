@@ -21,11 +21,11 @@ public class AccountController : Controller
         _logger = logger;
     }
     [HttpGet]
-    public IActionResult Signup(string returnUrl) 
+    public IActionResult Register(string returnUrl) 
         => View(new RegisterViewModel() { ReturnUrl = returnUrl ?? string.Empty });
 
     [HttpPost]
-    public async Task<IActionResult> Signup(RegisterViewModel model)
+    public async Task<IActionResult> Register(RegisterViewModel model)
     {
         if(!ModelState.IsValid)
         {
@@ -53,17 +53,16 @@ public class AccountController : Controller
         };
 
         await _userManager.CreateAsync(user, model.Password);
-        await _userManager.AddToRoleAsync(user, "student");
 
-        return LocalRedirect($"/account/signin?returnUrl={model.ReturnUrl}");
+        return LocalRedirect($"/account/login?returnUrl={model.ReturnUrl}");
     }
 
     [HttpGet]
-    public IActionResult Signin(string returnUrl) 
+    public IActionResult Login(string returnUrl) 
         => View(new LoginViewModel() { ReturnUrl = returnUrl ?? string.Empty });
 
     [HttpPost]
-    public async Task<IActionResult> Signin(LoginViewModel model)
+    public async Task<IActionResult> Login(LoginViewModel model)
     {
         if(!ModelState.IsValid)
         {
@@ -86,20 +85,4 @@ public class AccountController : Controller
         return BadRequest(result.IsNotAllowed);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Signout()
-    {
-        if(_signinManager.IsSignedIn(User))
-        {
-            await _signinManager.SignOutAsync();
-
-        }
-        return LocalRedirect("/");
-    }
-
-    [HttpGet]
-    public IActionResult AccessDenied(string returnUrl)
-    {
-        return View(new { ReturnUrl = returnUrl });
-    }
 }
