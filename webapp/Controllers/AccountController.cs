@@ -69,7 +69,7 @@ public class AccountController : Controller
             return View(model);
         }
 
-        var user = _userManager.Users.FirstOrDefault(u => u.Email == model.Email);
+        var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
         if(user == default)
         {
             ModelState.AddModelError("Password", "Email yoki parol noto'g'ri kiritilgan.");
@@ -83,6 +83,17 @@ public class AccountController : Controller
         }
 
         return BadRequest(result.IsNotAllowed);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Logout()
+    {
+        if(_signinManager.IsSignedIn(User))
+        {
+            await _signinManager.SignOutAsync();
+
+        }
+        return LocalRedirect("/");
     }
 
 }
