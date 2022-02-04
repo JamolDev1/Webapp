@@ -1,7 +1,23 @@
+using invoice.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "invoice.app.identity";
+    options.Cookie.Expiration = TimeSpan.FromDays(15);
+});
+
 
 var app = builder.Build();
 
@@ -18,6 +34,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
