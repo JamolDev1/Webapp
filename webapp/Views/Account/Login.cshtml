@@ -1,16 +1,20 @@
 @model webapp.ViewModel.LoginViewModel;
 
 @{
-    Layout = "_Layout";
+    Layout = "_AuthLayout";
 }
 
 <form class="d-flex justify-content-center form-signup" method="post" asp-action="Login" asp-controller="Account">
-
-      <div class="login-box">
+       
+      <div class="login-box" style="margin-top:70px;">
+        <a href="/" class="brand-link d-flex justify-content-center">
+          <img src="/images.jpg" class="brand-image img-circle" style="opacity: .8" >
+          <span class="brand-text font-weight-light">Invoice</span>
+        </a>
         <div class="card">
           <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
-      
+          
             <form action="../../index3.html" method="post">
               <div class="input-group mb-3">
                 <input type="email" class="form-control" placeholder="Email">
@@ -44,10 +48,8 @@
               <p></p>
               
             </form>
-           
-          
             <div class="d-flex justify-content-center col-12">
-              <a type="submit" style="margin-left:25px;height: 50px; width: 250px; border-radius:5px;"   href="~/account/register" class="text-center btn-primary "><p style="margin-up:56px;">Register a new membership</p></a>
+              <a href="~/account/register" class="text-center "><p>Register a new membership</p></a>
             </div>
          
         </div>
